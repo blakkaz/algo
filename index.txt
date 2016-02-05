@@ -1,0 +1,9 @@
+# algorithms
+bessel(3)       bessel.3
+extrema(3)      extrema.3
+extremum(3)     extremum.3
+linspace(3)     linspace.3
+logspace(3)     logspace.3
+
+# other
+GitHub          https://github.com/ntessore/algo
