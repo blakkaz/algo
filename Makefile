@@ -1,4 +1,4 @@
-SOURCES = bessel.c extrema.c extremum.c linspace.c logspace.c
+SOURCES = bessel.c cholesky.c extrema.c extremum.c linspace.c logspace.c
 
 DOCS = $(addprefix docs/,$(SOURCES:.c=.3.md))
 

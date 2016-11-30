@@ -1,5 +1,6 @@
 # algorithms
 bessel(3)       bessel.3
+cholesky(3)     cholesky.3
 extrema(3)      extrema.3
 extremum(3)     extremum.3
 linspace(3)     linspace.3
