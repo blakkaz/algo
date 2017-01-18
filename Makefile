@@ -1,23 +1,22 @@
 SOURCES = bessel.c cholesky.c extrema.c extremum.c linspace.c logspace.c
 
-DOCS = $(addprefix docs/,$(SOURCES:.c=.3.md))
+DOCS = $(SOURCES:.c=.3.md)
 
 CFLAGS = -Wall -O3
 
-SLEXT = a
+LIB = ntessore-algo
 
 ifeq ($(shell uname), Darwin)
+SLEXT = a
 DLEXT = dylib
 else
+SLEXT = a
 DLEXT = so
 endif
 
-LIB = algo-nt
 STATIC = lib$(LIB).$(SLEXT)
 SHARED = lib$(LIB).$(DLEXT)
 
-MKDIR = mkdir -p
-MV = mv
 RONN = ronn --html --style=toc --organization="@ntessore" --manual="algorithms"
 
 .PHONY: all static shared docs clean
@@ -38,6 +37,7 @@ docs: $(DOCS:.md=.html)
 clean:
 	$(RM) $(SOURCES:.c=.static.o) $(STATIC)
 	$(RM) $(SOURCES:.c=.shared.o) $(SHARED)
+	$(RM) $(DOCS:.md=.html)
 
 $(STATIC): $(SOURCES:.c=.static.o)
 	$(AR) $(ARFLAGS) $@ $^
@@ -51,6 +51,5 @@ $(SHARED): $(SOURCES:.c=.shared.o)
 %.shared.o: %.c
 	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
-docs/%.html: docs/%.md docs/index.txt
-	@$(MKDIR) $(@D)
-	@$(RONN) $<
+%.3.html: %.3.md
+	@$(RONN) $^
