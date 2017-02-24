@@ -9,7 +9,10 @@ void chol_eps(int n, const double A[], double eps, double L[])
             double s = 0;
             for(int k = 0; k < j; ++k)
                 s += L[i*n+k]*L[j*n+k];
-            L[i*n+j] = j < i ? (A[i*n+j] - s)/L[j*n+j] : sqrt(A[i*n+i] + eps - s);
+            if(j < i)
+                L[i*n+j] = (A[i*n+j] - s)/L[j*n+j];
+            else
+                L[i*n+j] = sqrt(A[i*n+i] + eps - s);
         }
         for(int j = i + 1; j < n; ++j)
             L[i*n+j] = 0;
